@@ -2,15 +2,15 @@ import ReleaseTransformations._
 
 lazy val commonSettings = Seq(
   organization := "com.rklaehn",
-  scalaVersion := "2.12.1",
-  crossScalaVersions := Seq("2.11.8", "2.12.1"),
+  scalaVersion := "2.12.4",
+  crossScalaVersions := Seq("2.11.12", "2.12.4"),
   libraryDependencies ++= Seq(
     "org.scala-lang" % "scala-reflect" % scalaVersion.value % "provided",
     "com.rklaehn" %%% "sonicreducer" % "0.5.0",
     "org.typelevel" %%% "algebra" % "0.7.0",
-    "org.typelevel" %%% "cats" % "0.9.0",
-    "org.typelevel" %%% "cats-laws" % "0.9.0" % "test",
-    "org.scalatest" %%% "scalatest" % "3.0.1" % "test",
+    "org.typelevel" %%% "cats-core" % "1.0.1",
+    "org.typelevel" %%% "cats-laws" % "1.0.1" % "test",
+    "org.scalatest" %%% "scalatest" % "3.0.4" % "test",
     "org.typelevel" %%% "algebra-laws" % "0.7.0" % "test"
   ),
   scalacOptions ++= Seq(
@@ -22,7 +22,7 @@ lazy val commonSettings = Seq(
   homepage := Some(url("http://github.com/rklaehn/abc")),
 
   // release stuff
-  credentials += Credentials(Path.userHome / ".ivy2" / ".credentials"),
+  // credentials += Credentials(Path.userHome / ".ivy2" / ".credentials"),
   releaseCrossBuild := true,
   releasePublishArtifactsAction := PgpKeys.publishSigned.value,
   publishMavenStyle := true,
@@ -135,7 +135,7 @@ lazy val instrumentedTestSettings = {
   }
   Seq(
     javaOptions <+= (dependencyClasspath in Test).map(makeAgentOptions),
-      libraryDependencies += "com.github.jbellis" % "jamm" % "0.3.1",
+      libraryDependencies += "com.github.jbellis" % "jamm" % "0.3.2",
       fork := true
     )
 }
